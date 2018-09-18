@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.xjl.mydemo.activity.MainActivity"
+    >
+
+    <ImageView
+        android:id="@+id/img_main"
+        android:layout_width="640px"
+        android:layout_height="480px"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/c2"
+        android:layout_marginTop="80dp"/>
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/button_start"
+        android:layout_below="@+id/img_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="开始"
+        android:textSize="20dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/qmui_s_link_color"
+        app:qmui_borderColor="@color/qmui_s_link_color"
+        app:qmui_borderWidth="1px"
+        app:qmui_isRadiusAdjustBounds="true"
+        />
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/btn_record"
+        android:layout_below="@+id/button_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="录音"
+        android:textSize="20dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/qmui_s_link_color"
+        app:qmui_borderColor="@color/qmui_s_link_color"
+        app:qmui_borderWidth="1px"
+        app:qmui_isRadiusAdjustBounds="true"
+        />
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/btn_camera"
+        android:layout_below="@+id/btn_record"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="照相"
+        android:textSize="20dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/qmui_s_link_color"
+        app:qmui_borderColor="@color/qmui_s_link_color"
+        app:qmui_borderWidth="1px"
+        app:qmui_isRadiusAdjustBounds="true"
+        />
+    <!--<Button-->
+        <!--android:id="@+id/button_stop"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="61.8dp"-->
+        <!--android:layout_below="@+id/img_main"-->
+        <!--android:layout_marginTop="19dp"-->
+        <!--android:layout_alignEnd="@+id/img_main"-->
+        <!--android:text="停止" />-->
+
+
+</android.widget.RelativeLayout>

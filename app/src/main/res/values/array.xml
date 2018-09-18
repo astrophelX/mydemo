@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--微笑帧动画-->
+    <string-array name="loading_anim">
+        <item>@drawable/c0</item>
+        <item>@drawable/c1</item>
+        <item>@drawable/c2</item>
+        <item>@drawable/c3</item>
+        <item>@drawable/c4</item>
+        <item>@drawable/c5</item>
+        <item>@drawable/c6</item>
+        <item>@drawable/c7</item>
+        <item>@drawable/c8</item>
+        <item>@drawable/c9</item>
+        <item>@drawable/c10</item>
+        <item>@drawable/c11</item>
+        <item>@drawable/c12</item>
+        <item>@drawable/c13</item>
+        <item>@drawable/c14</item>
+        <item>@drawable/c15</item>
+        <item>@drawable/c16</item>
+        <item>@drawable/c17</item>
+        <item>@drawable/c18</item>
+        <item>@drawable/c19</item>
+        <item>@drawable/c20</item>
+        <item>@drawable/c21</item>
+        <item>@drawable/c22</item>
+        <item>@drawable/c23</item>
+        <item>@drawable/c24</item>
+        <item>@drawable/c25</item>
+        <item>@drawable/c26</item>
+        <item>@drawable/c27</item>
+        <item>@drawable/c28</item>
+        <item>@drawable/c29</item>
+        <item>@drawable/c30</item>
+        <item>@drawable/c31</item>
+        <item>@drawable/c32</item>
+        <item>@drawable/c33</item>
+        <item>@drawable/c34</item>
+        <item>@drawable/c35</item>
+        <item>@drawable/c36</item>
+        <item>@drawable/c37</item>
+        <item>@drawable/c38</item>
+        <item>@drawable/c39</item>
+        <item>@drawable/c40</item>
+        <item>@drawable/c41</item>
+        <item>@drawable/c42</item>
+        <item>@drawable/c43</item>
+        <item>@drawable/c44</item>
+        <item>@drawable/c45</item>
+        <item>@drawable/c46</item>
+    </string-array>
+</resources>
