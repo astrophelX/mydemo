@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 android {
     compileSdkVersion 26
+
     defaultConfig {
         applicationId "com.example.xjl.mydemo"
         minSdkVersion 25
@@ -29,4 +30,5 @@ dependencies {
     api 'com.qmuiteam:qmui:1.0.6'
     api 'com.jakewharton.timber:timber:4.5.0'
     implementation project(':dlib')
+  //  api "cognitivej:cognitivej:0.6.2"
 }

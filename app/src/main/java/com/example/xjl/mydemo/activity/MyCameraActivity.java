@@ -21,6 +21,7 @@ public class MyCameraActivity extends Activity {
 
         setContentView(R.layout.my_activity_camera);
 
+        //申请悬浮窗权限，但是除了Google手机都TM用不了QAQ
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this.getApplicationContext())) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);

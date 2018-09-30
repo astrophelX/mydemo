@@ -38,6 +38,18 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
 
     private int mScreenRotation = 90;
 
+    //相关变量
+    /**
+     private List<VisionDetRet> reults  探测结果
+     private int  mPreviewWdith         悬浮窗宽度
+     private int mPreviewHeight         悬浮窗高度
+     private byte[][] mYUVBytes         相机原始预览图
+     private int[] mRGBBytes            dlib预处理图源
+     private Bitmap mRGBframeBitmap     原始图片
+     private Bitmap mCroppedBitmap      重绘后的图片
+     private Bitmap mResizedBitmap      调整尺寸后的bitmap图片
+     private Bitmap mInversedBipmap     bitmap1的转置bitmap
+     */
     private List<VisionDetRet> results;
     private int mPreviewWdith = 0;
     private int mPreviewHeight = 0;
@@ -47,7 +59,17 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
     private Bitmap mCroppedBitmap = null;
     private Bitmap mResizedBitmap = null;
     private Bitmap mInversedBipmap = null;
+    /*
+    private boolean mIsComputing        是否经过转换
+    private Handler mInferenceHandler;  后台处理handler
+    private Context mContext;           activity的context
+    private FaceDet mFaceDet;           dlib的面部识别
+    private TrasparentTitleView mTransparentTitleView;  上面可以变得titleview 用作显示处理时间
+    private FloatingCameraWindow mWindow;   悬浮窗本体
+    private Paint mFaceLandmardkPaint;      java绘制类
 
+    private int mframeNum                   你猜
+    */
     private boolean mIsComputing = false;
     private Handler mInferenceHandler;
 
@@ -59,6 +81,7 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
 
     private int mframeNum = 0;
 
+    //这个是listener的初始化
     public void initialize(
             final Context context,
             final AssetManager assetManager,
@@ -76,6 +99,7 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
         mFaceLandmardkPaint.setStyle(Paint.Style.STROKE);
     }
 
+    //用完之后释放，省的出现leak和bufferqueue abandon报错（其实已经出现了）
     public void deInitialize() {
         synchronized (OnGetImageListener.this) {
             if (mFaceDet != null) {
@@ -88,15 +112,18 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
         }
     }
 
+    //src：原始bitmap，dst目标bitmap
     private void drawResizedBitmap(final Bitmap src, final Bitmap dst) {
-
+        //获得屏幕长宽
         Display getOrient = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         int orientation = Configuration.ORIENTATION_UNDEFINED;
         Point point = new Point();
+        Log.d("point", "point x is"+point.x+",point y is "+point.y);
         getOrient.getSize(point);
         int screen_width = point.x;
         int screen_height = point.y;
         Log.d(TAG, String.format("screen size (%d,%d)", screen_width, screen_height));
+        //旋转横竖屏
         if (screen_width < screen_height) {
             orientation = Configuration.ORIENTATION_PORTRAIT;
             mScreenRotation = -90;
@@ -191,7 +218,6 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
                     uvRowStride,
                     uvPixelStride,
                     false);
-
             image.close();
         } catch (final Exception e) {
             if (image != null) {
@@ -207,7 +233,7 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
 
         mInversedBipmap = imageSideInversion(mCroppedBitmap);
         mResizedBitmap = Bitmap.createScaledBitmap(mInversedBipmap, (int)(INPUT_SIZE/4.5), (int)(INPUT_SIZE/4.5), true);
-
+        
         mInferenceHandler.post(
                 new Runnable() {
                     @Override
@@ -217,7 +243,7 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
                             mTransparentTitleView.setText("Copying landmark model to " + Constants.getFaceShapeModelPath());
                             FileUtils.copyFileFromRawToOthers(mContext, R.raw.shape_predictor_68_face_landmarks, Constants.getFaceShapeModelPath());
                         }
-
+                        //人脸68个点识别
                         if(mframeNum % 3 == 0){
                             long startTime = System.currentTimeMillis();
                             synchronized (OnGetImageListener.this) {

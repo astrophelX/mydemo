@@ -7,77 +7,83 @@
     tools:context="com.example.xjl.mydemo.activity.MainActivity"
     >
 
+    <FrameLayout
+        android:id="@+id/mycontainer_mod"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"></FrameLayout>
+
     <ImageView
         android:id="@+id/img_main"
-        android:layout_width="640px"
-        android:layout_height="480px"
+        android:layout_width="600px"
+        android:layout_height="450px"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/c2"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="123dp"
+        android:background="@drawable/smile00" />
 
-    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-        android:id="@+id/button_start"
-        android:layout_below="@+id/img_main"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="开始"
-        android:textSize="20dp"
-        android:layout_width="200dp"
+    <ImageView
+        android:id="@+id/main_bg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:clickable="true"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/qmui_s_link_color"
-        app:qmui_borderColor="@color/qmui_s_link_color"
-        app:qmui_borderWidth="1px"
-        app:qmui_isRadiusAdjustBounds="true"
+        android:background="@drawable/bg"
         />
 
-    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-        android:id="@+id/btn_record"
-        android:layout_below="@+id/button_start"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="录音"
-        android:textSize="20dp"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:clickable="true"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/qmui_s_link_color"
-        app:qmui_borderColor="@color/qmui_s_link_color"
-        app:qmui_borderWidth="1px"
-        app:qmui_isRadiusAdjustBounds="true"
-        />
-    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-        android:id="@+id/btn_camera"
-        android:layout_below="@+id/btn_record"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="照相"
-        android:textSize="20dp"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:clickable="true"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/qmui_s_link_color"
-        app:qmui_borderColor="@color/qmui_s_link_color"
-        app:qmui_borderWidth="1px"
-        app:qmui_isRadiusAdjustBounds="true"
-        />
-    <!--<Button-->
-        <!--android:id="@+id/button_stop"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="61.8dp"-->
+    <!--<com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton-->
+        <!--android:id="@+id/button_start"-->
         <!--android:layout_below="@+id/img_main"-->
-        <!--android:layout_marginTop="19dp"-->
-        <!--android:layout_alignEnd="@+id/img_main"-->
-        <!--android:text="停止" />-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:text="开始"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:clickable="true"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="10dp"-->
+        <!--android:textColor="@color/qmui_s_link_color"-->
+        <!--app:qmui_borderColor="@color/qmui_s_link_color"-->
+        <!--app:qmui_borderWidth="1px"-->
+        <!--app:qmui_isRadiusAdjustBounds="true"-->
+        <!--/>-->
 
+    <!--<com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton-->
+        <!--android:id="@+id/btn_record"-->
+        <!--android:layout_below="@+id/button_start"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:text="录音"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:clickable="true"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="10dp"-->
+        <!--android:textColor="@color/qmui_s_link_color"-->
+        <!--app:qmui_borderColor="@color/qmui_s_link_color"-->
+        <!--app:qmui_borderWidth="1px"-->
+        <!--app:qmui_isRadiusAdjustBounds="true"-->
+        <!--/>-->
+    <!--<com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton-->
+        <!--android:id="@+id/btn_camera"-->
+        <!--android:layout_below="@+id/btn_record"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:text="照相"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:clickable="true"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="10dp"-->
+        <!--android:textColor="@color/qmui_s_link_color"-->
+        <!--app:qmui_borderColor="@color/qmui_s_link_color"-->
+        <!--app:qmui_borderWidth="1px"-->
+        <!--app:qmui_isRadiusAdjustBounds="true"-->
+        <!--/>-->
 
 </android.widget.RelativeLayout>

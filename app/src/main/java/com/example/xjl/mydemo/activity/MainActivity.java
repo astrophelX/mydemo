@@ -33,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.xjl.mydemo.R;
+import com.tzutalin.dlibtest.CameraConnectionFragment;
 import com.tzutalin.dlibtest.FileUtils;
 import com.example.xjl.mydemo.tools.AnimationsContainer;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
@@ -63,19 +64,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.img_main);
+
 //        start = findViewById(R.id.button_start);
 //        stop = findViewById(R.id.button_stop);
 //        setXml2FrameAnim2();
-        circularButton1 = (QMUIRoundButton) findViewById(R.id.button_start);
-        circularButton2 = (QMUIRoundButton) findViewById(R.id.btn_record);
-        circularButton3 = (QMUIRoundButton) findViewById(R.id.btn_camera);
+//        circularButton1 = (QMUIRoundButton) findViewById(R.id.button_start);
+//        circularButton2 = (QMUIRoundButton) findViewById(R.id.btn_record);
+//        circularButton3 = (QMUIRoundButton) findViewById(R.id.btn_camera);
 
         circularButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(animation == null)
-                    animation = AnimationsContainer.getInstance(R.array.loading_anim, 100).createProgressDialogAnim(imageView);
-
+                    //播放动画
+                    animation = AnimationsContainer.getInstance(R.array.loading_anim_smile, 100).createProgressDialogAnim(imageView);//
                 if(!switchBtn()){
                     animation.start();
                 }else {
@@ -87,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, MyCameraActivity.class));
+//                getFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.mycontainer_mod, CameraConnectionFragment.newInstance())
+//                        .commit();
+                //想办法把悬浮窗弄过来
             }
         });
         circularButton3.setOnClickListener(new View.OnClickListener() {
@@ -96,33 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        start.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                if (animationDrawable != null && !animationDrawable.isRunning()) {
-////                    animationDrawable.start();
-////                }
-//                if(animation == null)
-//                    animation = AnimationsContainer.getInstance(R.array.loading_anim, 58).createProgressDialogAnim(imageView);
-//
-//                if(!switchBtn()){
-//                    animation.start();
-//                }else {
-//                    animation.stop();
-//                }
-//            }
-//        });
-
-//        stop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (animationDrawable != null && animationDrawable.isRunning()) {
-//                    animationDrawable.stop();
-//                }
-//            }
-//        });
-       // setXml2FrameAnim1();
     }
 
     //管理按钮切换
@@ -133,12 +113,6 @@ public class MainActivity extends AppCompatActivity {
         circularButton1.setText(run == false ? "开始" : "停止");
         return returnV;
     }
-
-//    private void setXml2FrameAnim2() {
-//        // 通过逐帧动画的资源文件获得AnimationDrawable示例
-//        imageView.setImageResource(R.drawable.frame_animation);
-//        animationDrawable = (AnimationDrawable) imageView.getDrawable();
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -167,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     protected void runDetectAsync(@NonNull String imgPath) {
-
         final String targetPath = Constants.getFaceShapeModelPath();
         if (!new File(targetPath).exists()) {
             runOnUiThread(new Runnable() {

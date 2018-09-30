@@ -50,4 +50,63 @@
         <item>@drawable/c45</item>
         <item>@drawable/c46</item>
     </string-array>
+    <!--smile帧动画-->
+    <string-array name="loading_anim_smile">
+        <item>@drawable/smile00</item>
+        <item>@drawable/smile01</item>
+        <item>@drawable/smile02</item>
+        <item>@drawable/smile03</item>
+        <item>@drawable/smile04</item>
+        <item>@drawable/smile05</item>
+        <item>@drawable/smile06</item>
+        <item>@drawable/smile07</item>
+        <item>@drawable/smile08</item>
+        <item>@drawable/smile09</item>
+        <item>@drawable/smile10</item>
+        <item>@drawable/smile11</item>
+        <item>@drawable/smile12</item>
+        <item>@drawable/smile13</item>
+        <item>@drawable/smile14</item>
+        <item>@drawable/smile15</item>
+        <item>@drawable/smile16</item>
+        <item>@drawable/smile17</item>
+        <item>@drawable/smile18</item>
+        <item>@drawable/smile19</item>
+        <item>@drawable/smile20</item>
+        <item>@drawable/smile21</item>
+        <item>@drawable/smile22</item>
+        <item>@drawable/smile23</item>
+        <item>@drawable/smile24</item>
+        <item>@drawable/smile25</item>
+        <item>@drawable/smile26</item>
+        <item>@drawable/smile27</item>
+        <item>@drawable/smile28</item>
+        <item>@drawable/smile29</item>
+        <item>@drawable/smile30</item>
+        <item>@drawable/smile31</item>
+        <item>@drawable/smile32</item>
+        <item>@drawable/smile33</item>
+        <item>@drawable/smile34</item>
+        <item>@drawable/smile35</item>
+        <item>@drawable/smile36</item>
+        <item>@drawable/smile37</item>
+        <item>@drawable/smile38</item>
+        <item>@drawable/smile39</item>
+        <item>@drawable/smile40</item>
+        <item>@drawable/smile41</item>
+        <item>@drawable/smile42</item>
+        <item>@drawable/smile43</item>
+        <item>@drawable/smile44</item>
+        <item>@drawable/smile45</item>
+        <item>@drawable/smile46</item>
+        <item>@drawable/smile47</item>
+        <item>@drawable/smile48</item>
+        <item>@drawable/smile49</item>
+        <item>@drawable/smile50</item>
+        <item>@drawable/smile51</item>
+        <item>@drawable/smile52</item>
+        <item>@drawable/smile53</item>
+        <item>@drawable/smile54</item>
+        <item>@drawable/smile55</item>
+    </string-array>
 </resources>
