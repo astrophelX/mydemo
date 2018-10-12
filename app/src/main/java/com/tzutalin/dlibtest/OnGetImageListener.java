@@ -16,6 +16,8 @@ import android.os.Trace;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import junit.framework.Assert;
 
@@ -24,12 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.xjl.mydemo.R;
+import com.example.xjl.mydemo.tools.AnimationsContainer;
 import com.tzutalin.dlib.Constants;
 import com.tzutalin.dlib.FaceDet;
 import com.tzutalin.dlib.VisionDetRet;
 
 
-class OnGetImageListener implements ImageReader.OnImageAvailableListener{
+public class OnGetImageListener implements ImageReader.OnImageAvailableListener{
     private static final boolean SAVE_PREVIEW_BITMAP = false;
 
     //324, 648, 972, 1296, 224, 448, 672, 976, 1344
@@ -65,9 +68,10 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
     private Context mContext;           activity的context
     private FaceDet mFaceDet;           dlib的面部识别
     private TrasparentTitleView mTransparentTitleView;  上面可以变得titleview 用作显示处理时间
+    private ImageView mImageView;           播放动画的imageview
     private FloatingCameraWindow mWindow;   悬浮窗本体
     private Paint mFaceLandmardkPaint;      java绘制类
-
+     private  AnimationsContainer.FramesSequenceAnimation animation; 帧动画容器
     private int mframeNum                   你猜
     */
     private boolean mIsComputing = false;
@@ -76,8 +80,11 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
     private Context mContext;
     private FaceDet mFaceDet;
     private TrasparentTitleView mTransparentTitleView;
+    private ImageView mImageView;
     private FloatingCameraWindow mWindow;
     private Paint mFaceLandmardkPaint;
+    private int emotional;
+    private  AnimationsContainer.FramesSequenceAnimation animation;
 
     private int mframeNum = 0;
 
@@ -90,6 +97,23 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
         this.mContext = context;
         this.mTransparentTitleView = scoreView;
         this.mInferenceHandler = handler;
+        mFaceDet = new FaceDet(Constants.getFaceShapeModelPath());
+        mWindow = new FloatingCameraWindow(mContext);
+
+        mFaceLandmardkPaint = new Paint();
+        mFaceLandmardkPaint.setColor(Color.GREEN);
+        mFaceLandmardkPaint.setStrokeWidth(2);
+        mFaceLandmardkPaint.setStyle(Paint.Style.STROKE);
+    }
+
+    //集成界面用的初始化函数，少了原始的TransparentTitleView
+    public void initialize(final Context context,
+                           final AssetManager assetManager,
+                           final ImageView imageView,
+                           final Handler handler){
+        this.mContext = context;
+        this.mInferenceHandler = handler;
+        this.mImageView = imageView;
         mFaceDet = new FaceDet(Constants.getFaceShapeModelPath());
         mWindow = new FloatingCameraWindow(mContext);
 
@@ -233,14 +257,16 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
 
         mInversedBipmap = imageSideInversion(mCroppedBitmap);
         mResizedBitmap = Bitmap.createScaledBitmap(mInversedBipmap, (int)(INPUT_SIZE/4.5), (int)(INPUT_SIZE/4.5), true);
-        
+
+        //dlib检测人脸68个点
         mInferenceHandler.post(
                 new Runnable() {
                     @Override
                     public void run() {
 
                         if (!new File(Constants.getFaceShapeModelPath()).exists()) {
-                            mTransparentTitleView.setText("Copying landmark model to " + Constants.getFaceShapeModelPath());
+                            //mTransparentTitleView.setText("Copying landmark model to " + Constants.getFaceShapeModelPath());
+                            Toast.makeText(mContext,"Copying landmark model to " + Constants.getFaceShapeModelPath(),Toast.LENGTH_SHORT).show();
                             FileUtils.copyFileFromRawToOthers(mContext, R.raw.shape_predictor_68_face_landmarks, Constants.getFaceShapeModelPath());
                         }
                         //人脸68个点识别
@@ -248,9 +274,28 @@ class OnGetImageListener implements ImageReader.OnImageAvailableListener{
                             long startTime = System.currentTimeMillis();
                             synchronized (OnGetImageListener.this) {
                                 results = mFaceDet.detect(mResizedBitmap);
+                                //TODO：向服务器发送坐标并接受结果
                             }
-                            long endTime = System.currentTimeMillis();
-                            mTransparentTitleView.setText("Time cost: " + String.valueOf((endTime - startTime) / 1000f) + " sec");
+                            //TODO：判断结果并播放动画
+                            switch (emotional){
+                                default:
+                                    break;
+                                case 1://smile
+                                    animation = AnimationsContainer.getInstance(R.array.loading_anim_smile, 100).createProgressDialogAnim(mImageView);
+                                    break;
+                                case 2://c
+                                    animation = AnimationsContainer.getInstance(R.array.loading_anim, 100).createProgressDialogAnim(mImageView);
+                                    break;
+                                case 3://angry
+                                    break;
+                                case 4://laugh
+                                    break;
+                                case 5://shy
+                                    break;
+                            }
+                            animation.start();
+                            //long endTime = System.currentTimeMillis();
+                            //mTransparentTitleView.setText("Time cost: " + String.valueOf((endTime - startTime) / 1000f) + " sec");
                         }
 
                         // Draw on bitmap
